@@ -9,11 +9,14 @@ public class Main {
         fourthMethod();
         fifthMethod();
 
-        int[] integerArray = {1, 1, 1, 2, 1};
-        System.out.println(sixthMethod(integerArray));
-        int[] secondIntegerArray = {2, 1, 1, 2, 1};
-        System.out.println(sixthMethod(secondIntegerArray));
+        System.out.println(sixthMethod(new int[] {1, 1, 1, 2, 1}));
+        System.out.println(sixthMethod(new int[] {2, 1, 1, 2, 1}));
         System.out.println();
+
+        seventhMethod(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 }, 3);
+        seventhMethod(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 }, -3);
+
+        eighthMethod();
     }
 
     /*
@@ -130,6 +133,48 @@ public class Main {
             sum2 += arr[i];
         }
         return sum1 == sum2;
+    }
+
+    /*
+    7. **** Написать метод, которому на вход подается одномерный массив и число n
+    (может быть положительным, или отрицательным), при этом метод должен сместить все элементымассива на n позиций.
+    Для усложнения задачи нельзя пользоваться вспомогательными массивами.
+     */
+    private static void seventhMethod(int arr[], int n) {
+        int i = 0;
+        int temp1 = arr[0];
+        int temp2;
+
+        for (int iter = 0; iter != arr.length + 1; iter++) {
+            i = n < 0 ? (arr.length + i + n) % arr.length : (i + n) % arr.length;
+            temp2 = arr[i];
+            arr[i] = temp1;
+            temp1 = temp2;
+        }
+
+        arrayOutput(arr);
+    }
+
+    /*
+    1***) Ввести два числа N, M заполнить таблицу N x M числами, где каждое чило - расстояние до ближайшей диагонали
+     */
+    private static void eighthMethod() {
+        int size = 5;
+        int[][] quadtressArray = new int[size][size];
+
+        int i = 0;
+        for (int eachArr[] : quadtressArray) {
+            for (int j = 0; j < eachArr.length; j++) {
+                quadtressArray[i][j] = Math.abs(i - j);
+                if (size == i + j + 1) {
+                    quadtressArray[i][j] = 0;
+                }
+            }
+            i++;
+        }
+
+        arrayOutput(quadtressArray);
+        System.out.println("\n");
     }
 
     private static void arrayOutput(int arr[]) {

@@ -68,7 +68,7 @@ public class GuessTheWord {
             return;
         }
 
-        for (int i = 0; i < word.length();i++){
+        for (int i = 0; i < Math.min(word.length(), usersLine.length());i++){
             if (usersLine.charAt(i) == word.charAt(i)){
                 wordsMask = wordsMask + usersLine.charAt(i);
                 continue;
